@@ -12,6 +12,10 @@ export default function Index() {
   return (
     <div style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.8" }}>
       <h1>Remix+Vercel Edge+Clerk test</h1>
+      GitHub:{" "}
+      <Link to="https://github.com/jrr/remix-vercel-edge-clerk">
+        jrr/remix-vercel-edge-clerk
+      </Link>
       <ul>
         <li>
           <Link to="/node">Serverless (node.js) Route</Link>

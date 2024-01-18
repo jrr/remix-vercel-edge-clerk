@@ -1,38 +1,20 @@
-# Welcome to Remix!
+# Remix + Vercel Edge + Clerk issue repro
 
-- [Remix Docs](https://remix.run/docs)
+This is a nearly-empty remix project, created with `pnpx create-remix@latest`.
 
-## Development
+Two routes have been added at /node and /edge, demonstrating both runtimes.
 
-From your terminal:
+This deploys and runs on Vercel just fine (from the `main` branch):
+https://remix-vercel-edge-clerk.vercel.app/
 
-```sh
-npm run dev
+## Adding Clerk
+
+Adding Clerk (following the [quick start doc](https://clerk.com/docs/quickstarts/remix)) breaks the Vercel deployment, with an error like this:
+
+```
+[21:39:52.506] Error: The Edge Function "404" is referencing unsupported modules:
+[21:39:52.507] 	- @clerk: #crypto, #fetch
+[21:39:54.707]
 ```
 
-This starts your app in development mode, rebuilding assets on file changes.
-
-## Deployment
-
-First, build your app for production:
-
-```sh
-npm run build
-```
-
-Then run the app in production mode:
-
-```sh
-npm start
-```
-
-Now you'll need to pick a host to deploy it to.
-
-### DIY
-
-If you're familiar with deploying node applications, the built-in Remix app server is production-ready.
-
-Make sure to deploy the output of `remix build`
-
-- `build/`
-- `public/build/`
+The Clerk changes are on the `clerk` branch.
