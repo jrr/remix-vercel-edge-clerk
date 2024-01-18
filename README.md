@@ -22,3 +22,11 @@ Adding Clerk (following the [quick start doc](https://clerk.com/docs/quickstarts
 ```
 
 The Clerk changes are on the `clerk` branch.
+
+## Repro Steps
+
+ - Fork this repo with all branches (uncheck "Copy the main branch only")
+ - Sign in to Vercel and add a project connected to the git repo. (it should deploy the `main` branch successfully)
+ - Checkout the `clerk` branch and push an empty commit to cause a vercel deploy (e.g. `git commit --allow-empty -m "empty commit"`)
+   - this deploy should fail with the above symptom.
+ 
