@@ -1,3 +1,5 @@
+import { ClerkApp, ClerkErrorBoundary } from "@clerk/remix";
+import { rootAuthLoader } from "@clerk/remix/ssr.server";
 import {
   Links,
   Meta,
@@ -5,6 +7,11 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
+import type { LinksFunction, LoaderFunction } from "@vercel/remix";
+
+export const ErrorBoundary = ClerkErrorBoundary();
+
+export const loader: LoaderFunction = (args) => rootAuthLoader(args);
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -24,6 +31,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
   );
 }
 
-export default function App() {
+function App() {
   return <Outlet />;
 }
+
+export default ClerkApp(App);
