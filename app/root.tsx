@@ -1,4 +1,4 @@
-import { ClerkApp, ClerkErrorBoundary } from "@clerk/remix";
+import { ClerkApp } from "@clerk/remix";
 import { rootAuthLoader } from "@clerk/remix/ssr.server";
 import {
   Links,
@@ -8,8 +8,6 @@ import {
   ScrollRestoration,
 } from "@remix-run/react";
 import type { LinksFunction, LoaderFunction } from "@vercel/remix";
-
-export const ErrorBoundary = ClerkErrorBoundary();
 
 export const loader: LoaderFunction = (args) => rootAuthLoader(args);
 
