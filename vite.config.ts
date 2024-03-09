@@ -11,6 +11,10 @@ export default defineConfig({
   plugins: [
     remix({ presets: [vercelPreset()] }),
     tsconfigPaths(),
-    nodePolyfills({}),
+    nodePolyfills({
+      include: ["crypto"],
+      globals: { global: true },
+      protocolImports: true,
+    }),
   ],
 });
