@@ -8,8 +8,10 @@ import { nodePolyfills } from "vite-plugin-node-polyfills";
 installGlobals();
 
 export default defineConfig({
+  ssr: { noExternal: ["@clerk/remix"] },
   plugins: [
     remix({ presets: [vercelPreset()] }),
+
     tsconfigPaths(),
     nodePolyfills({
       include: ["crypto"],
