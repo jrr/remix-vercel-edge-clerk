@@ -11,7 +11,14 @@ import type { LinksFunction, LoaderFunction } from "@vercel/remix";
 
 export const ErrorBoundary = ClerkErrorBoundary();
 
-export const loader: LoaderFunction = (args) => rootAuthLoader(args);
+// Circumvent process.env replacement during build
+const global = globalThis;
+const globalEnv = global.process.env;
+
+export const loader: LoaderFunction = (args) => rootAuthLoader(args,{
+  publishableKey: globalEnv.CLERK_PUBLISHABLE_KEY,
+  secretKey: globalEnv.CLERK_SECRET_KEY
+});
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (

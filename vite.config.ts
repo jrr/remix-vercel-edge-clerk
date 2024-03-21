@@ -5,6 +5,10 @@ import tsconfigPaths from "vite-tsconfig-paths";
 import { vercelPreset } from "@vercel/remix/vite";
 installGlobals();
 
-export default defineConfig({
-  plugins: [remix({ presets: [vercelPreset()] }), tsconfigPaths()],
-});
+export default defineConfig(({ mode }) => ({
+	plugins: [remix({ presets: [vercelPreset()] }), tsconfigPaths()],
+	ssr:
+		mode === "production"
+			? { noExternal: true, target: "webworker" }
+			: undefined,
+}));
